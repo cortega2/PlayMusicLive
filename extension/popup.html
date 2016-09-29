@@ -1,11 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="google" content="notranslate">
-  <title></title>
-  <link rel="stylesheet" type="text/css" href="styles/panel.css">
-  <script type="text/javascript" src="scripts/panel.js"></script>
+  <meta name="PlayMusicLive">
+  <title>PlayMusicLive</title>
+  <script src="popup.js"></script>
+  <link rel="stylesheet" type="text/css" href="popup.css">
 </head>
 <body>
+  <h1>PlayMusicLive</h1>
+  <div class="container">
+    <div class='label'>
+      <h2>Switch</h2>
+    </div>
+    <div class="onoffswitch">
+      <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="live-switch">
+      <label class="onoffswitch-label" for="live-switch"></label>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class='label'>
+      <h2>Status</h2>
+    </div>
+    <div id="status"></div>
+  </div>
 </body>
 </html>

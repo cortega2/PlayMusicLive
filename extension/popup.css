@@ -1,0 +1,57 @@
+h1 {
+  font-size: 14px;
+}
+
+.container{
+  width: 10em;
+  height: 3em;
+  border-top: solid black 1px;
+}
+
+.label h2{
+  float: left;
+  margin-bottom: 0;
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+#status{
+  float: right;
+  margin-top: 10px;
+}
+
+/*Switch css by https://proto.io/*/
+.onoffswitch {
+    float: right;
+    margin-top: 8px;
+    position: relative; width: 50px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    height: 15px; padding: 0; line-height: 15px;
+    border: 2px solid #CCCCCC; border-radius: 15px;
+    background-color: #EB1E1E;
+    transition: background-color 0.3s ease-in;
+}
+.onoffswitch-label:before {
+    content: "";
+    display: block; width: 15px; margin: 0px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    right: 33px;
+    border: 2px solid #CCCCCC; border-radius: 15px;
+    transition: all 0.3s ease-in 0s;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label {
+    background-color: #49E845;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label, .onoffswitch-checkbox:checked + .onoffswitch-label:before {
+   border-color: #49E845;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label:before {
+    right: 0px;
+}

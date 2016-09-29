@@ -88,12 +88,12 @@ function checkTabs(){
           saveTabId(tabs[0].id, executeLive(tabs[0].id));
         }
       });
-
-      //listen to other open tabs
-      chrome.tabs.onUpdated.addListener(function(tabID, changeInfo, tab){
-        if(changeInfo.status = 'complete')
-          updatedTab(tabID, tab.url);
-      });
+      //
+      // //listen to other open tabs
+      // chrome.tabs.onUpdated.addListener(function(tabID, changeInfo, tab){
+      //   if(changeInfo.status = 'complete')
+      //     updatedTab(tabID, tab.url);
+      // });
 
       //   //make sure we know when a tab closes
       //   chrome.tabs.onRemoved.addListener(function (tabID, removeInfo){

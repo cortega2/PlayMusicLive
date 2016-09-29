@@ -14,10 +14,10 @@ document.addEventListener('DOMContentLoaded', function() {
   // countButton.addEventListener('click', getCount);
 
   liveSwitchDiv = document.querySelector('#live-switch');
-  liveSwitchDiv.click();
+  // liveSwitchDiv.click();
   isOn = false;
   liveSwitchDiv.addEventListener('click', turnOnOff);
-
+  //
   statusDiv = document.querySelector('#status');
   setStatus('Off');
   getSavedSwitchPosition();
