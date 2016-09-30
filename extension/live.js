@@ -4,13 +4,8 @@ var currentPlay = document.getElementById('playerSongInfo');
 var lastSong = '';
 var switchStatus = false;
 
-console.log('HERE');
-
 // create an observer instance
 var observer = new MutationObserver(function(mutations) {
-    // mutations.forEach(function(mutation) {
-    //     console.log(mutation);
-    // });
     if(switchStatus)
       getCurrentSong();
 });

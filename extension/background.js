@@ -88,34 +88,38 @@ function checkTabs(){
           saveTabId(tabs[0].id, executeLive(tabs[0].id));
         }
       });
-      //
-      // //listen to other open tabs
-      // chrome.tabs.onUpdated.addListener(function(tabID, changeInfo, tab){
-      //   if(changeInfo.status = 'complete')
-      //     updatedTab(tabID, tab.url);
-      // });
 
-      //   //make sure we know when a tab closes
-      //   chrome.tabs.onRemoved.addListener(function (tabID, removeInfo){
-      //     if(tabID == playTabID){
-      //       disconnect();
-      //       playTabID = 0;
-      //     }
-      //   });
+      //listen to other open tabs
+      chrome.tabs.onUpdated.addListener(function(tabID, changeInfo, tab){
+        if(changeInfo.status = 'complete')
+          updatedTab(tabID, tab.url);
+      });
 
-      //   //listener for new tabs
-      //   chrome.tabs.onCreated.addListener(function (newTab){
-      //     chrome.tabs.onUpdated.addListener(function(tabID, changeInfo, tab){
-      //       if(changeInfo.status = 'complete')
-      //         updatedTab(tabID, tab.url);
-      //     });
-      //   })
+      //make sure we know when a tab closes
+      chrome.tabs.onRemoved.addListener(function (tabID, removeInfo){
+        getSavedTabId(function (savedID){
+          if(tabID == savedID){
+            saveTabId(-1, disconnect());
+          }
+        });
+      });
 
-      //   //listen for replaced tabs
-      //   chrome.tabs.onReplaced.addListener(function (addedTabId, removedTabId){
-      //     if(removedTabId == playTabID)
-      //       playTabID = addedTabId;
-      //   });
+      //listener for new tabs
+      chrome.tabs.onCreated.addListener(function (newTab){
+        chrome.tabs.onUpdated.addListener(function(tabID, changeInfo, tab){
+          if(changeInfo.status = 'complete')
+            updatedTab(tabID, tab.url);
+        });
+      });
+
+      //listen for replaced tabs, neede because the tab id might change
+      chrome.tabs.onReplaced.addListener(function (addedTabId, removedTabId){
+        getSavedTabId(function(savedID){
+          if(removedTabId == savedID){
+            saveTabId(addedTabId);
+          }
+        });
+      });
     }
     else{
       getSavedTabId(function(id){
@@ -165,7 +169,6 @@ function disconnect(){
 function updatedTab(tabID, url){
   getSavedTabId(function(savedID){
     if(url.includes('play.google.com/music/listen?u=0#') && savedID == -1){
-      console.log('HERE');
       saveTabId(tabID, executeLive(tabID));
     }
     //went to a diff page
