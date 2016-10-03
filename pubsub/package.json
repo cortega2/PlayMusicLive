@@ -1,0 +1,16 @@
+{
+  "name": "PlayMusicLive pubsub",
+  "version": "1.0.0",
+  "description": "A pubsub server for the PlayMusicLive app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Carlos Ortega",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0",
+    "redis": "^2.6.2",
+    "socket.io": "^1.4.8"
+  }
+}
