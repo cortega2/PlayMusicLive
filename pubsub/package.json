@@ -9,6 +9,7 @@
   "author": "Carlos Ortega",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "redis": "^2.6.2",
     "socket.io": "^1.4.8"

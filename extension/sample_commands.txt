@@ -193,3 +193,12 @@ sudo apt-get install testdisk
 photorec
 clear
 exit
+
+
+
+
+
+
+
+curl -X POST http://localhost:8000 -H "content-type: application/json" -d '[{"song":"fake song"}]'
+curl -X POST http://localhost:8000 -H "content-type: application/json" -d '[{"badge_id":"foo bar badge"}]'
