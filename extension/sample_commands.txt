@@ -201,4 +201,9 @@ exit
 
 
 curl -X POST http://localhost:8000 -H "content-type: application/json" -d '[{"song":"fake song"}]'
-curl -X POST http://localhost:8000 -H "content-type: application/json" -d '[{"badge_id":"foo bar badge"}]'
+
+
+track.type != undefined && track.title != undefined && track.artist != undefined
+  && track.album != undefined && track.albumURL != undefine){
+
+curl -X POST http://localhost:8000 -H "content-type: application/json" -d '[{"type":"song", "title": "TEST_SONG", "artist": "TEST_ARTIST", "album":"TEST_ALBUM", "albumURL":"fakeurl"}]'

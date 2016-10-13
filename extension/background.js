@@ -7,7 +7,9 @@
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     if (request.messageType === 'song' || request.messageType === 'podcast'){
-      sendResponse({status : sendToDatabase(request)});
+      //TODO: figure out way to remove the return status since it is not needed anymore
+      sendResponse({status : 1});
+      sendToDatabase(request);
     }
 
     if (request.messageType === 'switch'){
@@ -24,14 +26,25 @@ chrome.runtime.onMessage.addListener(
 );
 
 function sendToDatabase(song){
-  var status = 0;
-  //send here using socket io
-  console.log(song);
-  //need to do some error checking here
-  if(true){
-    status = 1;
+  var trackInfo = {
+    type: song.messageType,
+    title: song.titleText,
+    artist: song.artistText,
+    album: song.albumText,
+    albumURL: song.albumArtText
+  };
+
+  //connection to pubsub server
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'http://localhost:8000');
+  xhr.setRequestHeader( 'Content-Type', 'application/json' );
+  xhr.onreadystatechange = function(){
+    if(xhr.readyState == 4){
+      //TODO if response is an error then stop sending things to database
+      console.log(xhr.responseText);
+    }
   }
-  return status;
+  xhr.send(JSON.stringify(trackInfo));
 }
 
 function notifyPopup(connected){

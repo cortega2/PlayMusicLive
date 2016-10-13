@@ -6,7 +6,8 @@
     "tabs",
     "storage",
     "http://play.google.com/music/*",
-    "https://play.google.com/music/*"
+    "https://play.google.com/music/*",
+    "http://localhost:8000/*"
   ],
   "browser_action": {
       "default_title": "PlayMusicLive",
