@@ -1,0 +1,30 @@
+body{
+  /*im so sorry*/
+  background: black !important;
+}
+
+.track-info{
+  border: 1px white solid;
+  color: white;
+  padding: 10px;
+}
+
+.track-info h2{
+  font-size: 2vw;
+  margin: 0px;
+}
+
+.track-info h3{
+  font-size: 1.25vw;
+  margin: 0px;
+  margin-top: 5px;
+}
+
+.col-sm-4{
+  margin-bottom: 20px;
+}
+
+.col-sm-4 img{
+  width: 100%;
+  border: 1px white solid;
+}

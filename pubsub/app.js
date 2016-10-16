@@ -9,17 +9,38 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var tracks = require('./controllers/tracks');
 
-app.get('/', function(req, res){
-  console.log('Not implemented yet');
+app.get('/', tracks.get);
+
+app.post('/', function(req, res){
+  var track = req.body;
+  //check if track is valid
+  if(track.type != undefined && track.title != undefined && track.artist != undefined
+    && track.album != undefined && track.albumURL != undefined){
+    //give url a larger iamage to use
+    var splitString = track.albumURL.split('=');
+    track.albumURL = splitString[0] + '=s500-c-e100'
+
+    io.emit('track', track);
+    tracks.save(track, res);
+  }
+  else
+    return res.status(503).json({error:true});
 });
 
-app.post('/', tracks.save);
-
-// io.on('connection', function(socket){
-//   //send messages here when something happens
-// })
+io.on('connection', function(socket){
+  //send messages here when connected
+  console.log('Connected to socket');
+  // io.emit('tracks', tracks.get());
+  // socket.on('my other event', function (data) {
+    // console.log(data);
+  // });
+})
 
 //TODO: look for better way of storing the port numbers
-app.listen(8000, function(){
+http.listen(8000, function(){
   console.log('PubSub listening on port 8000');
 });
+
+function broadcast(){
+
+}
