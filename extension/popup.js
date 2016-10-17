@@ -87,19 +87,3 @@ chrome.runtime.onMessage.addListener(
     return;
   }
 );
-
-
-////////////////////////////////////////////////////////////////////////////////
-// //TODO: move this to its own file
-// function getCount(){
-//   // get current tab
-//   chrome.tabs.query({active: true, currentWindow : true}, function(tabs){
-//     console.log(tabs[0].url);
-//     //logic to check that the url is something like play.google/music or something
-//     //if it is then add some listener for the play button, if playing then look at what is playing
-//     if(tabs[0].url === 'https://play.google.com/music/listen?u=0#/all'){
-//       chrome.tabs.executeScript(null, {file: "counter.js"});
-//     }
-//   });
-// }
-//
