@@ -3,13 +3,12 @@
 var app = require('express')();
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
-// app.use(bodyParser.json({ type: 'application/vnd.api+json' }))
 
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var tracks = require('./controllers/tracks');
 
-app.get('/', tracks.get);
+app.get('/tracks', tracks.get);
 
 app.post('/', function(req, res){
   var track = req.body;
@@ -30,17 +29,9 @@ app.post('/', function(req, res){
 io.on('connection', function(socket){
   //send messages here when connected
   console.log('Connected to socket');
-  // io.emit('tracks', tracks.get());
-  // socket.on('my other event', function (data) {
-    // console.log(data);
-  // });
 })
 
 //TODO: look for better way of storing the port numbers
 http.listen(8000, function(){
   console.log('PubSub listening on port 8000');
 });
-
-function broadcast(){
-
-}

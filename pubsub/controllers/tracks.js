@@ -3,9 +3,7 @@
 var model = require('../models/track');
 
 //save badges from model
-// exports.save = function(req, res, next){
 exports.save = function(track, res){
-  //TODO: might need to clone the body, not sure
   model.save(track, function(err){
     if(err) {
       console.log('error saving');
@@ -26,8 +24,3 @@ exports.get = function(req, res){
     return res.json(200, data);
   });
 };
-
-// TODO:implement the send function to send/broadcast songs to clients/server 2
-//      Might not be needed
-// export.send = function(){
-// }

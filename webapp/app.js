@@ -4,12 +4,11 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
-// app.use(bodyParser.json({ type: 'application/vnd.api+json' }))
 
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var pubsub_io = require("socket.io-client")('http://localhost:8000');
-
+var request = require('request')
 
 app.use(express.static('public'));  //server static files
 
@@ -30,16 +29,27 @@ http.listen(8080, function(){
 pubsub_io.on("connect",function(){
   pubsub_io.on('track',function(data){
     // We received a message from Server 2
-    console.log(data);
-
     //send messages to client
     io.emit('track', data);
-
-
   });
 });
 
 io.on('connection', function(socket){
   //send messages here when something happens
   console.log('connected to the client');
+
+  //get badges from the server
+  getTracks(function(err, data){
+    if(err) return;
+    data.reverse();
+    data.forEach(function(track){
+      socket.emit('track', track);
+    });
+  });
 })
+
+function getTracks(callback){
+  request('http://localhost:8000/tracks', function(err, response, body){
+    callback(err, JSON.parse(body));
+  });
+}
