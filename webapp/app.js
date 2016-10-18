@@ -50,6 +50,9 @@ io.on('connection', function(socket){
 
 function getTracks(callback){
   request('http://localhost:8000/tracks', function(err, response, body){
-    callback(err, JSON.parse(body));
+    if(err)
+      return callback(err, {error: true})
+    else
+      return callback(err, JSON.parse(body))
   });
 }
