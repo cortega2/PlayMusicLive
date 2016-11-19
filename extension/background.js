@@ -22,6 +22,8 @@ chrome.runtime.onMessage.addListener(
         sendResponse({connected : false});
       }
     }
+    if (request.messageType === 'unloaded')
+      saveTabId(-1, disconnect())
   }
 );
 
@@ -154,6 +156,7 @@ function disconnect(){
 
 function updatedTab(tabID, url){
   getSavedTabId(function(savedID){
+    //loaded the play music page for the first time
     if(url.includes('play.google.com/music/listen?u=0#') && savedID == -1){
       saveTabId(tabID, executeLive(tabID));
     }

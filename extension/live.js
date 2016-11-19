@@ -54,6 +54,14 @@ function getCurrentSong(){
   }
 }
 
+//add event listener for when the page closes/refreshes/crashes
+window.addEventListener('unload', function(event) {
+  var message = {
+    messageType: 'unloaded'
+  };
+  chrome.runtime.sendMessage(message);
+});
+
 
 // messages
 chrome.runtime.onMessage.addListener(
